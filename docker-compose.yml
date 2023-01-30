@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  app_db:
+    container_name: app_db
+    image: postgres:14.4-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=appointment_db
+    ports:
+      - "5433:5432"
+
+  app_back:
+    container_name: app_back
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+        context: .
+    ports:
+      - "8081:8080"
+    depends_on:
+      - app_db
