@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/appointment_db
+    username: postgres
+    password: app
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog-master.yaml
+    enabled: true
+

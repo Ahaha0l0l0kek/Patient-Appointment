@@ -1,6 +1,6 @@
 package ru.bychkov.patientappointment.entity.enums;
 
-public enum Specialization {
+public enum SpecializationEnum {
     INTERNIST,
     ENT,
     NEUROLOGIST
