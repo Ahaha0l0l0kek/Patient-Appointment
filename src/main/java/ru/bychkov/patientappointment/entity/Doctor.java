@@ -9,7 +9,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.UuidGenerator;
 import ru.bychkov.patientappointment.entity.enums.SpecializationEnum;
+
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -20,7 +23,7 @@ public class Doctor {
     @Id
     long id;
 
-    long uuid;
+    UUID uuid;
 
     String name;
 
