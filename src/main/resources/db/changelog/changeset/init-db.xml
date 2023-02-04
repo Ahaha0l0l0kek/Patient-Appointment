@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Axelerator (generated)" id="1675529836992-1">
+        <createTable tableName="appointment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="appointment_pkey"/>
+            </column>
+            <column name="datetime" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="doctor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Axelerator (generated)" id="1675529836992-2">
+        <createTable tableName="doctor">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="doctor_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="specialization" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Axelerator (generated)" id="1675529836992-3">
+        <createTable tableName="patient">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="patient_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(12)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Axelerator (generated)" id="1675529836992-4">
+        <addUniqueConstraint columnNames="doctor_id" constraintName="appointment_doctor_id_key" tableName="appointment"/>
+    </changeSet>
+    <changeSet author="Axelerator (generated)" id="1675529836992-5">
+        <addUniqueConstraint columnNames="uuid" constraintName="doctor_uuid_key" tableName="doctor"/>
+    </changeSet>
+    <changeSet author="Axelerator (generated)" id="1675529836992-6">
+        <addUniqueConstraint columnNames="uuid" constraintName="patient_uuid_key" tableName="patient"/>
+    </changeSet>
+    <changeSet author="Axelerator (generated)" id="1675529836992-7">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="doctor" constraintName="doctor_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="doctor_id" referencedTableName="appointment" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
