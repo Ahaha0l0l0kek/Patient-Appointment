@@ -14,6 +14,7 @@ import ru.bychkov.patientappointment.service.AppointmentService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,18 +26,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<FreeAppointmentsDto> checkFreeDoctorAppointments(long doctorId, String date) {
-        List<FreeAppointmentsDto> appointmentDtos = new ArrayList<>();
         List<Appointment> appointments = appointmentRepository.getByDoctorIdAndDate(doctorId, LocalDate.parse(date));
-        for (Appointment appointment : appointments) {
-            appointmentDtos.add(new FreeAppointmentsDto(appointment.getDoctor(),
-                    appointment.getDatetime()));
-        }
-        return appointmentDtos;
+        return appointments.stream()
+                .map(appointment -> new FreeAppointmentsDto(appointment.getDoctor(), appointment.getDatetime()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public AppointmentByPatientDto takeAppointment(long appId, long patientId) {
-        if(appointmentRepository.getReferenceById(appId).getPatient() != null) {
+        if (appointmentRepository.getReferenceById(appId).getPatient() != null) {
             throw new TakenAppException();
         } else {
             appointmentRepository.registerPatientByAppId(appId, patientId);
@@ -49,13 +47,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<AppointmentByPatientDto> getAppointmentsByPatientId(long patientId) {
-        List<AppointmentByPatientDto> appointmentDtos = new ArrayList<>();
         List<Appointment> appointments = appointmentRepository.getByPatientId(patientId);
-        for (Appointment appointment : appointments) {
-            appointmentDtos.add(new AppointmentByPatientDto(appointment.getPatient(),
-                    appointment.getDatetime(),
-                    appointment.getDoctor()));
-        }
-        return appointmentDtos;
+        return appointments.stream()
+                .map(appointment -> new AppointmentByPatientDto(appointment.getPatient(),
+                        appointment.getDatetime(),
+                        appointment.getDoctor()))
+                .collect(Collectors.toList());
     }
 }
