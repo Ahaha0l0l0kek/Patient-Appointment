@@ -4,12 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
-import ru.bychkov.patientappointment.controller.dto.AppointmentDto;
+import ru.bychkov.patientappointment.controller.dto.AppointmentByPatientDto;
+import ru.bychkov.patientappointment.controller.dto.FreeAppointmentsDto;
 import ru.bychkov.patientappointment.entity.Appointment;
 import ru.bychkov.patientappointment.exception.TakenAppException;
 import ru.bychkov.patientappointment.repository.AppointmentRepository;
-import ru.bychkov.patientappointment.repository.DoctorRepository;
-import ru.bychkov.patientappointment.repository.PatientRepository;
 import ru.bychkov.patientappointment.service.AppointmentService;
 
 import java.time.LocalDate;
@@ -25,31 +24,37 @@ public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentRepository appointmentRepository;
 
     @Override
-    public List<AppointmentDto> checkFreeDoctorAppointments(long doctorId, String date) {
-        List<AppointmentDto> appointmentDtos = new ArrayList<>();
+    public List<FreeAppointmentsDto> checkFreeDoctorAppointments(long doctorId, String date) {
+        List<FreeAppointmentsDto> appointmentDtos = new ArrayList<>();
         List<Appointment> appointments = appointmentRepository.getByDoctorIdAndDate(doctorId, LocalDate.parse(date));
         for (Appointment appointment : appointments) {
-            appointmentDtos.add(new AppointmentDto(appointment.getDatetime()));
+            appointmentDtos.add(new FreeAppointmentsDto(appointment.getDoctor(),
+                    appointment.getDatetime()));
         }
         return appointmentDtos;
     }
 
     @Override
-    public AppointmentDto takeAppointment(long appId, long patientId) {
+    public AppointmentByPatientDto takeAppointment(long appId, long patientId) {
         if(appointmentRepository.getReferenceById(appId).getPatient() != null) {
             throw new TakenAppException();
         } else {
             appointmentRepository.registerPatientByAppId(appId, patientId);
-            return new AppointmentDto(appointmentRepository.getReferenceById(appId).getDatetime());
+            Appointment appointment = appointmentRepository.getReferenceById(appId);
+            return new AppointmentByPatientDto(appointment.getPatient(),
+                    appointment.getDatetime(),
+                    appointment.getDoctor());
         }
     }
 
     @Override
-    public List<AppointmentDto> getAppointmentsByPatientId(long patientId) {
-        List<AppointmentDto> appointmentDtos = new ArrayList<>();
+    public List<AppointmentByPatientDto> getAppointmentsByPatientId(long patientId) {
+        List<AppointmentByPatientDto> appointmentDtos = new ArrayList<>();
         List<Appointment> appointments = appointmentRepository.getByPatientId(patientId);
         for (Appointment appointment : appointments) {
-            appointmentDtos.add(new AppointmentDto(appointment.getDatetime()));
+            appointmentDtos.add(new AppointmentByPatientDto(appointment.getPatient(),
+                    appointment.getDatetime(),
+                    appointment.getDoctor()));
         }
         return appointmentDtos;
     }

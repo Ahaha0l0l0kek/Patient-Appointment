@@ -25,7 +25,7 @@ public class WebServiceConfiguration {
     @Bean(name = "timetable")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema timetableSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setPortTypeName("port");
+        definition.setPortTypeName("8080");
         definition.setTargetNamespace("http://projects.my/ws/timetable");
         definition.setLocationUri("/ws");
         definition.setSchema(timetableSchema);
