@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Axelerator (generated)" id="1675529836992-7">
+        <insert tableName="doctor">
+            <column name="name">Chvykov Vladislav Olegovich</column>
+            <column name="uuid">2a690fdc-a4dd-11ed-b9df-0242ac120003</column>
+            <column name="specialization">INTERNIST</column>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name">Alekseev Aleksei Alekseevich</column>
+            <column name="uuid">2a691464-a4dd-11ed-b9df-0242ac120003</column>
+            <column name="specialization">ENT</column>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name">Maksov Maksim Maksimovich</column>
+            <column name="uuid">2a6915e0-a4dd-11ed-b9df-0242ac120003</column>
+            <column name="specialization">NEUROLOGIST</column>
+        </insert>
+</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://projects.my/ws"
+           targetNamespace="http://projects.my/ws" elementFormDefault="qualified">
+
+    <xs:element name="CreateTimetableRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="date" type="xs:date"/>
+                <xs:element name="startTime" type="xs:string"/>
+                <xs:element name="endTime" type="xs:string"/>
+                <xs:element name="Doctor" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="id" type="xs:long"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateTimetableResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="isCreated" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

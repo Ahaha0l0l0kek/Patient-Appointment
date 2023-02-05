@@ -1,3 +1,7 @@
 databaseChangeLog:
   - include:
       file: db/changelog/changeset/init-db.xml
+  - include:
+      file: db/changelog/changeset/create-doctors.xml
+  - include:
+      file: db/changelog/changeset/create-patients.xml

@@ -5,10 +5,9 @@
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="appointment_pkey"/>
             </column>
+            <column name="app_date" type="date"/>
             <column name="datetime" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="doctor_id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
+            <column name="doctor_id" type="BIGINT"/>
             <column name="patient_id" type="BIGINT"/>
         </createTable>
     </changeSet>
@@ -47,16 +46,10 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Axelerator (generated)" id="1675529836992-4">
-        <addUniqueConstraint columnNames="doctor_id" constraintName="appointment_doctor_id_key" tableName="appointment"/>
-    </changeSet>
     <changeSet author="Axelerator (generated)" id="1675529836992-5">
         <addUniqueConstraint columnNames="uuid" constraintName="doctor_uuid_key" tableName="doctor"/>
     </changeSet>
     <changeSet author="Axelerator (generated)" id="1675529836992-6">
         <addUniqueConstraint columnNames="uuid" constraintName="patient_uuid_key" tableName="patient"/>
-    </changeSet>
-    <changeSet author="Axelerator (generated)" id="1675529836992-7">
-        <addForeignKeyConstraint baseColumnNames="id" baseTableName="doctor" constraintName="doctor_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="doctor_id" referencedTableName="appointment" validate="true"/>
     </changeSet>
 </databaseChangeLog>
