@@ -4,6 +4,9 @@ spring:
     url: jdbc:postgresql://localhost:5433/appointment_db
     username: postgres
     password: app
+  jpa:
+    hibernate:
+      ddl-auto: none
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
