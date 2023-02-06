@@ -7,11 +7,11 @@ mvn package
 
 ## Запуск проекта
 ```sh
-docker-compose up
+docker-compose up --build
 ```
 
 ## Описание
-По части rest имеется swagger по адресу http://localhost:8080/swagger-ui/index.html
+По части rest имеется swagger по адресу http://localhost:8081/swagger-ui/index.html
 
 По части soap:
     WSDL схема: http://localhost:8080/ws/timetable.wsdl

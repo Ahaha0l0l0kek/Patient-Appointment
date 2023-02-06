@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/appointment_db
+    url: jdbc:postgresql://app_db:5432/appointment_db
     username: postgres
     password: app
   jpa:

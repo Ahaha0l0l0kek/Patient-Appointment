@@ -1,4 +1,5 @@
 FROM openjdk:17
-ARG WAR_FILE=./target/Patient-Appointment-0.0.1-SNAPSHOT.war
-COPY ${WAR_FILE} app.war
+ARG JAR_FILE=./target/Patient-Appointment-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
 EXPOSE 8080

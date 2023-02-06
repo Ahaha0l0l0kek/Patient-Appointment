@@ -11,7 +11,7 @@
 	<groupId>ru.bychkov</groupId>
 	<artifactId>Patient-Appointment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Patient-Appointment</name>
 	<description>Patient-Appointment</description>
 	<properties>
