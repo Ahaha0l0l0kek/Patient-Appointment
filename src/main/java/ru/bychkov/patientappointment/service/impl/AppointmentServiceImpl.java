@@ -28,6 +28,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<FreeAppointmentsDto> checkFreeDoctorAppointments(long doctorId, String date) {
         List<Appointment> appointments = appointmentRepository.getByDoctorIdAndDate(doctorId, LocalDate.parse(date));
         return appointments.stream()
+                .filter(appointment -> appointment.getPatient() == null)
                 .map(appointment -> new FreeAppointmentsDto(appointment.getDoctor(), appointment.getDatetime()))
                 .collect(Collectors.toList());
     }
