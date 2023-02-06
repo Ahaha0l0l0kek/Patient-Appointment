@@ -14,7 +14,7 @@ docker-compose up --build
 По части rest имеется swagger по адресу http://localhost:8081/swagger-ui/index.html
 
 По части soap:
-    WSDL схема: http://localhost:8080/ws/timetable.wsdl
+    WSDL схема: http://localhost:8081/ws/timetable.wsdl
     
     Запрос:
       <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://projects.my/ws">
